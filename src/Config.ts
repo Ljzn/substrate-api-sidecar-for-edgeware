@@ -1,6 +1,8 @@
 import { ConfigManager } from 'confmgr';
 
 import * as configTypes from '../config/types.json';
+import { Mainnet } from '@edgeware/node-types';
+
 import { Specs } from './Specs';
 import { CONFIG, ISidecarConfig, MODULES } from './types/config';
 
@@ -43,7 +45,10 @@ export class Config {
 			},
 			SUBSTRATE: {
 				WS_URL: config.Get(MODULES.SUBSTRATE, CONFIG.WS_URL) as string,
-				CUSTOM_TYPES: configTypes[CONFIG.CUSTOM_TYPES],
+				CUSTOM_TYPES: {
+					...configTypes[CONFIG.CUSTOM_TYPES],
+					...Mainnet.types
+				}
 			},
 			LOG: {
 				LEVEL: config.Get(MODULES.LOG, CONFIG.LEVEL) as string,

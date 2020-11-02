@@ -20,7 +20,15 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es2017"
+    "target": "es2017",
+    "paths": {
+      "@polkadot/api/augment": [
+        "./node_modules/@edgeware/node-types/interfaces/augment-api.d.ts"
+      ],
+      "@polkadot/types/augment": [
+        "./node_modules/@edgeware/node-types/interfaces/augment-types.d.ts"
+      ],
+    }
   },
   "typeRoots": [
     "./node_modules/@types"
