@@ -18,6 +18,7 @@
 import { ApiPromise } from '@polkadot/api';
 import { WsProvider } from '@polkadot/rpc-provider';
 import { json } from 'express';
+import { Mainnet } from '@edgeware/node-types';
 
 import App from './App';
 import { Config } from './Config';
@@ -57,9 +58,7 @@ async function main() {
 	// Instantiate a web socket connection to the node for basic polkadot-js use
 	const api = await ApiPromise.create({
 		provider: new WsProvider(config.SUBSTRATE.WS_URL),
-		types: {
-			...config.SUBSTRATE.CUSTOM_TYPES,
-		},
+		...Mainnet
 	});
 
 	// Gather some basic details about the node so we can display a nice message
@@ -69,8 +68,7 @@ async function main() {
 	]);
 
 	logger.info(
-		`Connected to chain ${chainName.toString()} on the ${implName.toString()} client at ${
-			config.SUBSTRATE.WS_URL
+		`Connected to chain ${chainName.toString()} on the ${implName.toString()} client at ${config.SUBSTRATE.WS_URL
 		}`
 	);
 
